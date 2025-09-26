@@ -3,7 +3,7 @@ import type { Map2048, Direction, MoveResult } from "./types/statetypes.ts";
 
 const defaultMap: Map2048 = [
   [null, null, null, null],
-  [null, 2, null, null],
+  [null, null, null, null],
   [null, null, null, null],
   [null, null, null, null]
 ];
@@ -119,7 +119,9 @@ function checkGameOver(map: Map2048) {
 }
 
 function App() {
-  const [map, setMap] = useState<Map2048>(() => defaultMap.map(row => [...row]));
+  const [map, setMap] = useState<Map2048>(() =>
+  addRandomTile(addRandomTile(defaultMap.map(row => [...row])))
+);
   const [undoHistory, setUndoHistory] = useState<Map2048[]>([]);
   const isGameOver = checkGameOver(map);
 
